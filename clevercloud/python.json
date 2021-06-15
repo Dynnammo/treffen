@@ -1,0 +1,11 @@
+{
+    "build": {
+        "cache_dependancies": true
+    },
+    "deploy": {
+        "module": "treffen.wsgi:application",
+        "managetasks": [
+            "collectstatic --noinput"
+        ]
+    }
+}
