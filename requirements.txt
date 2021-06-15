@@ -1,5 +1,7 @@
-Django~=3.2.4
-daphne~=3.0.2
-psycopg2~=2.8.6
-pytest-cov~=2.11.1
 coverage~=5.5
+daphne~=3.0.2
+Django~=3.2.4
+psycopg2~=2.8.6
+pytest~=6.2.4
+pytest-cov~=2.11.1
+pytest-django~=4.4.0
