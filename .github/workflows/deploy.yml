@@ -4,7 +4,7 @@ name: "[CD] Deploy to Clever Cloud"
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
 
       - uses: 47ng/actions-clever-cloud@v1
         with:
-          appID: app_cdf91733-323c-420f-b80d-b7c297e16843
+          appID: ${{ secrets.APP_ID }}
         env:
           CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
           CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}

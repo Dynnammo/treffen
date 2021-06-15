@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_eb0c3dde-550b-42e9-8cd3-ba7ae0613a57",
+      "org_id": "user_65baa226-8467-4248-bd22-c7d515d41b90",
+      "deploy_url": "https://push-n2-par-clevercloud-customers.services.clever-cloud.com/app_eb0c3dde-550b-42e9-8cd3-ba7ae0613a57.git",
+      "name": "treffen",
+      "alias": "treffen"
+    }
+  ]
+}
