@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-3%n3pah9awdy3ia=n_&=tzp01b+5t6qr8*@257cu3&g&%x=vxk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'common.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [join(BASE_DIR,"treffen_app","templates")],
+        'DIRS': [join(BASE_DIR,"treffen","templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,13 +75,13 @@ WSGI_APPLICATION = 'common.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.getenv("POSTGRES_DB_NAME"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "HOST": 'localhost',
-        "PORT": "5432",
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRESQL_ADDON_DB', None),
+        'USER': os.environ.get('POSTGRESQL_ADDON_USER', None),
+        'PASSWORD': os.environ.get('POSTGRESQL_ADDON_PASSWORD', None),
+        'HOST': os.environ.get('POSTGRESQL_ADDON_HOST', None),
+        'PORT': os.environ.get('POSTGRESQL_ADDON_PORT', 5432),
     }
 }
 
