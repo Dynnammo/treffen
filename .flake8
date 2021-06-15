@@ -1,2 +1,2 @@
 [flake8]
-exclude = treffen/settings.py
+exclude = common/settings.py
