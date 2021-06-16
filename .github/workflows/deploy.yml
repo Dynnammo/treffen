@@ -2,14 +2,11 @@
 name: "[CD] Deploy to Clever Cloud"
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
 
 
 jobs:
-  on-success:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
