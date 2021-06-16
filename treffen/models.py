@@ -37,6 +37,10 @@ class Player(models.Model):
     def __str__(self):
         return self.name
 
+    def delete(self, *args, **kwargs):
+        storage, path = self.picture.storage, self.picture.path
+        super(Player, self).delete(*args, **kwargs)
+        storage.delete(path)
 
 class Game(models.Model):
     GAME_MODES = [
