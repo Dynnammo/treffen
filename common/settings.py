@@ -127,10 +127,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_URL = "/static/"
 
-if os.getenv("DJANGO_ENV") != "development":
-    STATIC_ROOT = "static/"
-else:
+ENV = os.getenv("DJANGO_ENV", "development")
+if ENV == "development":
     STATIC_ROOT = join(BASE_DIR, "static")
+elif ENV == "production":
+    STATIC_ROOT = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
