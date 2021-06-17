@@ -8,7 +8,7 @@ class Player(models.Model):
     )
     picture = models.ImageField(
         upload_to='uploads/',
-
+        null=True
     )
     player_code = models.CharField(
         max_length=10,
