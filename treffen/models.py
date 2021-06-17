@@ -42,6 +42,7 @@ class Player(models.Model):
         super(Player, self).delete(*args, **kwargs)
         storage.delete(path)
 
+
 class Game(models.Model):
     GAME_MODES = [
         ('BR', 'Battle Royale'),

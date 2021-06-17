@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import HomeView
+from .views import RegistrationView, WaitingView
 
 urlpatterns = [
-    path('', HomeView.as_view(), name="homepage")
+    path('', RegistrationView.as_view(), name="registration_page"),
+    path('waiting', WaitingView.as_view(), name="waiting_page")
 ]
