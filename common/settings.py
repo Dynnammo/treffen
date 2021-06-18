@@ -83,9 +83,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('POSTGRESQL_ADDON_DB', 'treffen_test'),
-        'USER': os.environ.get('POSTGRESQL_ADDON_USER', None),
-        'PASSWORD': os.environ.get('POSTGRESQL_ADDON_PASSWORD', None),
-        'HOST': os.environ.get('POSTGRESQL_ADDON_HOST', None),
+        'USER': os.environ.get('POSTGRESQL_ADDON_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRESQL_ADDON_PASSWORD', 'postgres'),
+        'HOST': os.environ.get('POSTGRESQL_ADDON_HOST', '127.0.0.1'),
         'PORT': os.environ.get('POSTGRESQL_ADDON_PORT', 5432),
     }
 }
