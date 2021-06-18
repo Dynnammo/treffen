@@ -10,8 +10,8 @@ import pytest
 pytestmark = pytest.mark.django_db
 
 
-def test_registration_page(client):
-    url = urls.reverse('registration_page')
+def test_registration(client):
+    url = urls.reverse('registration')
     resp = client.get(url)
 
     assert resp.status_code == 200
@@ -26,7 +26,7 @@ def test_form_game_not_valid(client):
         'game_name': player.game.name + "XXX"
     }
 
-    url = urls.reverse('registration_page')
+    url = urls.reverse('registration')
     resp = client.post(url, player_data)
 
     errors = resp.context_data['form'].errors
@@ -41,7 +41,7 @@ def test_form_invalid_registration(client):
         'game_name': player.game.name
     }
 
-    url = urls.reverse('registration_page')
+    url = urls.reverse('registration')
     resp = client.post(url, player_data)
 
     errors = resp.context_data['form'].errors
@@ -59,7 +59,7 @@ def test_form_valid(client):
         'game_name': player.game.name
     }
 
-    url = urls.reverse('registration_page')
+    url = urls.reverse('registration')
     resp = client.post(url, player_data)
 
     assert Player.objects.count() == initial_count + 1
