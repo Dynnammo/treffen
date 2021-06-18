@@ -1,2 +1,2 @@
 [flake8]
-exclude = common/settings.py
+exclude = common/settings.py, treffen/migrations/

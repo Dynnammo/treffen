@@ -6,7 +6,8 @@
         "module": "common.wsgi:application",
         "managetasks": [
             "collectstatic --noinput",
-            "migrate"
+            "migrate",
+            "createadmin"
         ]
     }
 }

@@ -14,7 +14,8 @@ from os.path import join
 import os
 from pathlib import Path
 import mimetypes
-mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/html", ".css", True)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'treffen.apps.TreffenConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,10 +82,10 @@ WSGI_APPLICATION = 'common.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRESQL_ADDON_DB', None),
-        'USER': os.environ.get('POSTGRESQL_ADDON_USER', None),
-        'PASSWORD': os.environ.get('POSTGRESQL_ADDON_PASSWORD', None),
-        'HOST': os.environ.get('POSTGRESQL_ADDON_HOST', None),
+        'NAME': os.environ.get('POSTGRESQL_ADDON_DB', 'treffen_test'),
+        'USER': os.environ.get('POSTGRESQL_ADDON_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRESQL_ADDON_PASSWORD', 'postgres'),
+        'HOST': os.environ.get('POSTGRESQL_ADDON_HOST', '127.0.0.1'),
         'PORT': os.environ.get('POSTGRESQL_ADDON_PORT', 5432),
     }
 }
@@ -124,10 +126,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_ROOT = "/static/"
+STATIC_URL = "/static/"
 
 
-STATIC_URL = '/static/'
+ENV = os.getenv("DJANGO_ENV", "development")
+if ENV == "development":
+    STATIC_ROOT = join(BASE_DIR, "static")
+elif ENV == "production":
+    STATIC_ROOT = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
