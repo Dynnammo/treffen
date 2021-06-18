@@ -19,5 +19,6 @@ class Command(BaseCommand):
             print("Admin account created!")
         except IntegrityError as err:
             print(
-                f"Error while creating superuser! Maybe it already exists?\nOriginal error: {err}"
+                f"Error while creating superuser!"
+                f"Maybe it already exists?\nOriginal error: {err}"
             )
