@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'treffen.apps.TreffenConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,10 +81,10 @@ WSGI_APPLICATION = 'common.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRESQL_ADDON_DB', None),
-        'USER': os.environ.get('POSTGRESQL_ADDON_USER', None),
-        'PASSWORD': os.environ.get('POSTGRESQL_ADDON_PASSWORD', None),
-        'HOST': os.environ.get('POSTGRESQL_ADDON_HOST', None),
+        'NAME': os.environ.get('POSTGRESQL_ADDON_DB', 'treffen_test'),
+        'USER': os.environ.get('POSTGRESQL_ADDON_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRESQL_ADDON_PASSWORD', 'postgres'),
+        'HOST': os.environ.get('POSTGRESQL_ADDON_HOST', '127.0.0.1'),
         'PORT': os.environ.get('POSTGRESQL_ADDON_PORT', 5432),
     }
 }
@@ -125,8 +126,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_URL = "/static/"
-STATIC_ROOT = "static/"
 
+
+ENV = os.getenv("DJANGO_ENV", "development")
+if ENV == "development":
+    STATIC_ROOT = join(BASE_DIR, "static")
+elif ENV == "production":
+    STATIC_ROOT = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
