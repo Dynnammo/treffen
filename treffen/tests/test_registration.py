@@ -9,6 +9,7 @@ import pytest
 
 pytestmark = pytest.mark.django_db
 
+
 def test_registration_page(client):
     url = urls.reverse('registration_page')
     resp = client.get(url)
@@ -39,7 +40,7 @@ def test_form_invalid_registration(client):
     player_data = {
         'game_name': player.game.name
     }
-    
+
     url = urls.reverse('registration_page')
     resp = client.post(url, player_data)
 

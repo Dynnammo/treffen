@@ -2,6 +2,7 @@ from treffen.models import Player, Game, Mission
 import pytest
 import factory
 
+
 @pytest.mark.django_db
 class MissionFactory(factory.django.DjangoModelFactory):
     class Meta:
@@ -39,4 +40,3 @@ class PlayerFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('first_name')
     picture = factory.django.ImageField()
     game = factory.SubFactory(GameFactory)
-

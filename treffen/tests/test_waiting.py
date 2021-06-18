@@ -1,10 +1,5 @@
 from django import urls
-from factories import (
-    PlayerFactory,
-    GameFactory,
-    MissionFactory
-)
-from treffen.models import Player
+from factories import PlayerFactory
 import pytest
 
 pytestmark = pytest.mark.django_db
