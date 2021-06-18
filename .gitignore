@@ -4,3 +4,4 @@ __pycache__/
 **/static
 .coverage
 uploads/
+coverage.xml

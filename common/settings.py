@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'common.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRESQL_ADDON_DB', None),
+        'NAME': os.environ.get('POSTGRESQL_ADDON_DB', 'treffen_test'),
         'USER': os.environ.get('POSTGRESQL_ADDON_USER', None),
         'PASSWORD': os.environ.get('POSTGRESQL_ADDON_PASSWORD', None),
         'HOST': os.environ.get('POSTGRESQL_ADDON_HOST', None),

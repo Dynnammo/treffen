@@ -13,7 +13,7 @@ class RegistrationView(FormView):
         p = Player.objects.create(
             name=form.cleaned_data['name'],
             picture=form.cleaned_data['picture'],
-            game_id=Game.objects.get(name=form.cleaned_data['game_name']).id
+            game=Game.objects.get(name=form.cleaned_data['game_name'])
         )
         response.set_cookie('player_id', p.id)
         return response
