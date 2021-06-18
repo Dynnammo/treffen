@@ -50,6 +50,12 @@ class Game(models.Model):
         ('CO', 'Cooperation'),
         ('CH', 'Championship')
     ]
+    GAME_STATUS = [
+        ('W', 'Waiting to start'),
+        ('S', 'Started'),
+        ('P', 'PAUSED'),
+        ('O', 'OVER')
+    ]
     name = models.CharField(
         max_length=20,
         blank=True,
@@ -62,6 +68,11 @@ class Game(models.Model):
     mission_set = models.ManyToManyField(
         'Mission',
         related_name='affected_games'
+    )
+    status = models.CharField(
+        max_length=2,
+        choices=GAME_STATUS,
+        default='W'
     )
 
     def __str__(self):
