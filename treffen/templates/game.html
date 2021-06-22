@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Game {{ player.game.name }}</h1>
+
+{% if player.ziel.name %}
+  <p>Name of your target: {{ player.ziel.name  }}</p>
+{% endif %}
+
+{% if player.ziel.picture.url %}
+  <p>Picture of your target</p>
+  <img src="{{ player.ziel.picture.url }}" alt="Picture of {{  player.ziel.name }}"/>
+{% endif %}
+
+
+<p>Your mission :{{ player.mission }}</p>
+{% endblock content %}
