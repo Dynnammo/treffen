@@ -1,4 +1,5 @@
 from django.views.generic import FormView, TemplateView
+from django.contrib import messages
 from django.urls import reverse
 from django.shortcuts import redirect
 from .forms import RegistrationForm
@@ -28,8 +29,10 @@ class WaitingView(TemplateView):
     def get(self, request, *args, **kwargs):
         game = Game.objects.get(id=request.COOKIES['game_id'])
         if game.status == 'S':
+            messages.success(self.request, 'Game has just started!')
             url = reverse('game')
             return redirect(url)
+        messages.error(self.request, 'Game has not started yet')
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -45,6 +48,7 @@ class GameView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["player"] = Player.objects.get(id=self.request.COOKIES['player_id'])
+        context["player"] = Player.objects.get(
+            id=self.request.COOKIES['player_id']
+        )
         return context
-    

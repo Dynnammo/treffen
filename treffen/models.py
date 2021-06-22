@@ -50,9 +50,9 @@ class Game(models.Model):
     COOPERATION = 'CO'
     CHAMPIONSHIP = 'CH'
     GAME_MODES = [
-        ( BATTLE_ROYALE, 'Battle Royale'),
-        ( COOPERATION, 'Cooperation'),
-        ( CHAMPIONSHIP, 'Championship')
+        (BATTLE_ROYALE, 'Battle Royale'),
+        (COOPERATION, 'Cooperation'),
+        (CHAMPIONSHIP, 'Championship')
     ]
     WAITING_TO_START = 'WTS'
     STARTED = 'S'
@@ -113,6 +113,7 @@ class Game(models.Model):
             current_player = current_player.ziel
         [p.save() for p in players]
         return
+
 
 class Mission(models.Model):
     name = models.CharField(
