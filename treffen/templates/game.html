@@ -7,8 +7,10 @@
   <p>Name of your target: {{ player.ziel.name  }}</p>
 {% endif %}
 
-<p>Picture of your target</p>
-<img src="{{ player.ziel.picture.url }}" alt="Picture of {{  player.ziel.name }}"/>
+{% if player.ziel.picture.url %}
+  <p>Picture of your target</p>
+  <img src="{{ player.ziel.picture.url }}" alt="Picture of {{  player.ziel.name }}"/>
+{% endif %}
 
 
 <p>Your mission :{{ player.mission }}</p>
