@@ -1,4 +1,6 @@
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, ListView
+from .mixins import HasAdminAccessMixin
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 from django.shortcuts import redirect
@@ -52,3 +54,21 @@ class GameView(TemplateView):
             id=self.request.COOKIES['player_id']
         )
         return context
+
+
+class AdminGameView(HasAdminAccessMixin, ListView):
+    model = Player
+    template_name = "admin/dashboard.html"
+
+
+
+    def get_queryset(self):
+        qs = Player.objects.filter(
+            game=Game.objects.get(name=self.kwargs['game_name'])
+        )
+
+        import pdb; pdb.set_trace()
+        return qs
+
+    def test_func(self):
+        return self.request.user.is_superuser
