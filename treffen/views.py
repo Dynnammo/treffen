@@ -60,6 +60,10 @@ class GameView(FormView):
             id=self.request.COOKIES['player_id']
         )
         current_game = Game.objects.get(id=self.request.COOKIES['game_id'])
+        
+        if current_player.status == current_player.IS_OUT:
+            messages.warning('You are out of the game')
+        
         if current_game.status == current_game.OVER:
             if current_player.ziel is None:
                 messages.warning(
@@ -78,6 +82,9 @@ class GameView(FormView):
             id=self.request.COOKIES['player_id']
         )
         current_game = Game.objects.get(id=self.request.COOKIES['game_id'])
+
+        if current_player.status == current_player.IS_OUT:
+            return redirect(reverse("end_game"))
 
         if form.cleaned_data['player_code'] == current_player.ziel.player_code:
             current_player.get_next_ziel()

@@ -58,6 +58,7 @@ class Player(models.Model):
         self.mission = former_ziel.mission
         former_ziel.ziel = None
         former_ziel.mission = None
+        former_ziel.status = self.IS_OUT
         former_ziel.save()
         self.save()
 
