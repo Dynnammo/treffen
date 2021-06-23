@@ -1,9 +1,14 @@
 from django.views.generic import FormView, TemplateView, ListView
-from .mixins import HasAdminAccessMixin
+from .mixins import (
+    HasAdminAccessMixin
+)
 from django.contrib import messages
 from django.urls import reverse
 from django.shortcuts import redirect
-from .forms import RegistrationForm
+from .forms import (
+    RegistrationForm,
+    ZielValidationForm
+)
 from .models import Player, Game
 
 
@@ -44,14 +49,53 @@ class WaitingView(TemplateView):
         return context
 
 
-class GameView(TemplateView):
+class GameView(FormView):
     template_name = "game.html"
+    form_class = ZielValidationForm
+    success_url = 'game'
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+        current_player = Player.objects.get(
+            id=self.request.COOKIES['player_id']
+        )
+        current_game = Game.objects.get(id=self.request.COOKIES['game_id'])
+        if current_game.status == current_game.OVER:
+            if current_player.ziel is None:
+                messages.warning(
+                    self.request, 'You are out of the game'
+                )
+            else:
+                messages.warning(
+                    self.request, 'You have won the game'
+                )
+            return redirect(reverse('end_game'))
+        return response
+
+    def form_valid(self, form):
+        response = super(GameView, self).form_valid(form)
+        current_player = Player.objects.get(
+            id=self.request.COOKIES['player_id']
+        )
+        current_game = Game.objects.get(id=self.request.COOKIES['game_id'])
+
+        if form.cleaned_data['player_code'] == current_player.ziel.player_code:
+            current_player.get_next_ziel()
+            current_game.check_if_finished()
+            messages.success(self.request, 'Good job ! Here is your new ziel!')
+        else:
+            messages.error(
+                self.request, 'The code you have entered is wrong 😠'
+            )
+
+        return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["player"] = Player.objects.get(
             id=self.request.COOKIES['player_id']
         )
+        context["is_out"] = (context["player"].status == Player.IS_OUT)
         return context
 
 
@@ -68,3 +112,7 @@ class AdminGameView(HasAdminAccessMixin, ListView):
 
     def test_func(self):
         return self.request.user.is_superuser
+
+
+class EndGameView(TemplateView):
+    template_name = "end_game.html"

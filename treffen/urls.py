@@ -3,7 +3,8 @@ from .views import (
     RegistrationView,
     WaitingView,
     GameView,
-    AdminGameView
+    AdminGameView,
+    EndGameView
 )
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
         AdminGameView.as_view(),
         name="admin_game"
     ),
+    path("end_game", EndGameView.as_view(), name="end_game"),
 ]

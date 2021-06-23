@@ -5,15 +5,19 @@ Admin view of the game
 
 <table>
 <tr>
-    <th>Player name</th>
-    <th>Player ziel</th>
-    <th>Player mission</th>
+    <th>name</th>
+    <th>ziel</th>
+    <th>mission</th>
+    <th>code</th>
+    <th>ID</th>
 </tr>
 {% for object in object_list %}
 <tr>
     <td>{{ object.name }}</td>
     <td>{{ object.ziel.name }}</td>
     <td>{{ object.mission }}</td>
+    <td>{{ object.player_code }}</td>
+    <td>{{ object.id }}</td>
 </tr>
 {% endfor %}
 </table

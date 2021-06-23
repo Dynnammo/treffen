@@ -2,16 +2,26 @@
 
 {% block content %}
 <h1>Game {{ player.game.name }}</h1>
-
+{% if is_out %}
+<p> You're out of the game! </>
+{% else %}
 {% if player.ziel.name %}
   <p>Name of your target: {{ player.ziel.name  }}</p>
 {% endif %}
 
-{% if player.ziel.picture.url %}
+{% comment %} {% if player.ziel.picture.url %}
   <p>Picture of your target</p>
   <img src="{{ player.ziel.picture.url }}" alt="Picture of {{  player.ziel.name }}"/>
-{% endif %}
+{% endif %} {% endcomment %}
 
 
 <p>Your mission :{{ player.mission }}</p>
+
+<p> Enter the player code if you have succeeded in your mission </p>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Enter"/>
+</form>
+{% endif %}
 {% endblock content %}
