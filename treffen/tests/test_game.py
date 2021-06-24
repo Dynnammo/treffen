@@ -14,7 +14,7 @@ def test_eliminate_ziel_code_is_wrong(ready_config):
     assert resp.status_code == 302
 
     resp = client.get(urls.reverse(resp.url))
-    assert messages(resp)[0].message == 'The code you have entered is wrong 😠'
+    assert messages(resp)[0] == 'The code you have entered is wrong 😠'
 
 
 def test_eliminate_ziel_but_player_was_eliminated(ready_config):
@@ -40,7 +40,7 @@ def test_eliminate_ziel_but_player_was_eliminated(ready_config):
     #  TODO: determine why there is 2 messages instead of 1
     resp = client.get(urls.reverse(resp.url[1:]))
     ziel_of_ziel.refresh_from_db()
-    assert messages(resp)[1].message == 'You are out of the game'
+    assert messages(resp)[1] == 'You are out of the game'
     assert ziel_of_ziel.status == ziel_of_ziel.IS_PLAYING
 
 
@@ -53,7 +53,7 @@ def test_eliminate_ziel_all_correct(ready_config):
     assert resp.status_code == 302
 
     resp = client.get(urls.reverse(resp.url))
-    assert messages(resp)[0].message == 'Good job ! Here is your new ziel!'
+    assert messages(resp)[0] == 'Good job ! Here is your new ziel!'
 
 
 def test_game_is_over_player_has_won(ready_config):
@@ -68,7 +68,7 @@ def test_game_is_over_player_has_won(ready_config):
 
     resp = client.get(urls.reverse(resp.url[1:]))
     assert resp.status_code == 200
-    assert messages(resp)[0].message == 'You have won the game'
+    assert messages(resp)[0] == 'You have won the game'
 
 
 def test_game_is_over_player_has_lost(ready_config):
@@ -86,4 +86,4 @@ def test_game_is_over_player_has_lost(ready_config):
 
     resp = client.get(urls.reverse(resp.url[1:]))
     assert resp.status_code == 200
-    assert messages(resp)[0].message == 'You are out of the game'
+    assert messages(resp)[0] == 'You are out of the game'

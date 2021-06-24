@@ -30,4 +30,4 @@ def ready_config(client, ongoing_game):
 
 
 def messages(resp):
-    return resp.context['messages']._loaded_messages
+    return [msg.message for msg in resp.context['messages']._loaded_messages]
