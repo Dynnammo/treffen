@@ -5,9 +5,9 @@
 {% if is_out %}
 <p> You're out of the game! </>
 {% else %}
-{% if player.ziel.name %}
-  <p>Name of your target: {{ player.ziel.name  }}</p>
-{% endif %}
+  {% if player.ziel.name %}
+    <p>Name of your target: {{ player.ziel.name  }}</p>
+  {% endif %}
 
 {% comment %} {% if player.ziel.picture.url %}
   <p>Picture of your target</p>
@@ -15,13 +15,26 @@
 {% endif %} {% endcomment %}
 
 
-<p>Your mission :{{ player.mission }}</p>
+  <p>Your mission :{{ player.mission }}</p>
 
-<p> Enter the player code if you have succeeded in your mission </p>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Enter"/>
-</form>
+  <p> Enter the player code if you have succeeded in your mission </p>
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Enter"/>
+  </form>
+
+<p id="player_code" style="border: solid #444444;">If you were targeted: click here to reveal your player code</p>
+<script>
+  let player_code = document.querySelector('#player_code')
+  player_code.addEventListener("click", toggle)
+
+  function toggle(){
+    let original_text = player_code.innerHTML
+    player_code.innerHTML = {{ player.player_code }}
+
+    setTimeout(() => {player_code.innerHTML = original_text}, 3000)
+  }
+</script>
 {% endif %}
 {% endblock content %}
