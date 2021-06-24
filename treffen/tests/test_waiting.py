@@ -27,8 +27,7 @@ def test_waiting_not_enough_players(client, basic_game):
     basic_game.status = basic_game.STARTED
     basic_game.save()
 
-    assert messages(resp)[0].message == 'Game has not started yet'
-    assert messages(resp)[0].level_tag == 'error'
+    assert messages(resp)[0] == 'Game has not started yet'
     assert resp.status_code == 200
     assert p.game.status == basic_game.WAITING_TO_START
 
@@ -46,8 +45,7 @@ def test_waiting_not_enough_missions(client):
     url = urls.reverse('waiting_page')
     resp = client.get(url)
 
-    assert messages(resp)[0].message == 'Game has not started yet'
-    assert messages(resp)[0].level_tag == 'error'
+    assert messages(resp)[0] == 'Game has not started yet'
     assert resp.status_code == 200
     assert p.game.status == game.WAITING_TO_START
 
@@ -71,4 +69,4 @@ def test_waiting_game_has_started(client):
     url = urls.reverse(resp.url[1:])
     resp = client.get(url)
     assert resp.status_code == 200
-    assert messages(resp)[0].message == 'Game has just started!'
+    assert messages(resp)[0] == 'Game has just started!'
