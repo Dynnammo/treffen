@@ -21,3 +21,12 @@ Prerequesites : Postgresql, Python 3.9 at least, Pip. Done on Manjaro/ArchLinux,
 ### Production setup
 On clevercloud, you'll have to link your GitHub account or installing the Clever cloud CLI.
 Treffen works with a Postgres addon + a dozen of env variables.
+
+## How to create your own game ?
+- On a running instance, go the admin panel: if you're instance is hosted on treffen.example.com, the URL will be treffen.example.com/admin.
+- Enter your superuser credentials
+- Create a Game object. Choose the name wisely: it'll be the key to enter in the game
+- Create the required Missions you want for this Game. Don't forget to re-set the Game by linking missions to the game!
+- You can now announce your game to all players by giving them its name !
+- When everybody is registered, edit your game by switching its status from "Waiting to start" to "Started"
+- You're done ! The game is now running. You can see the advancement of the game on the `/dashboard` page(only accessible to superusers).
