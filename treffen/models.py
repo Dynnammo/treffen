@@ -135,6 +135,7 @@ class Game(models.Model):
             current_player.ziel = players[index]
             current_player.mission = missions[index]
             current_player = current_player.ziel
+            current_player.status = current_player.IS_PLAYING
         [p.save() for p in players]
         return
 
