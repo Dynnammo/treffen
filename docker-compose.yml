@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    container_name: treffen_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: treffen_test
+    ports:
+      - 5432:5432
+  app: 
+    container_name: treffen_app
+    command: python manage.py runserver 0.0.0.0:8000
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/src
+    environment:
+      POSTGRESQL_ADDON_DB: treffen_test
+      POSTGRESQL_ADDON_HOST: treffen_db
+      POSTGRESQL_ADDON_USER: postgres
+      POSTGRESQL_ADDON_PASSWORD: postgres
+      POSTGRESQL_ADDON_PORT: 5432
+      DATABASE: postgres
+    ports:
+      - 8000:8000
+    depends_on:
+      - "db"
