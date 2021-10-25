@@ -18,6 +18,26 @@ Prerequesites : Postgresql, Python 3.9 at least, Pip. Done on Manjaro/ArchLinux,
 - Run : `python manage.py runserver`
 - You're done. Give yourself a *Kartoffelnsalat* to celebrate.
 
+### Running with Docker 🐋
+1. Clone the project 
+```
+git clone git@github.com:Dynnammo/treffen.git && cd treffen
+```
+2. Build the image
+```
+docker-compose build
+```
+3. Up the image (this will run all the development setup process)
+```
+docker-compose up (-d)
+```
+> If you need to change any configuration such as db port, user, password, etc...,You can set it into the docker-compose.yml file
+3. Re - run migrations within the container
+```
+docker exec -it treffen_app python manage.py migrate       
+```
+
+
 ### Production setup
 On clevercloud, you'll have to link your GitHub account or installing the Clever cloud CLI.
 Treffen works with a Postgres addon + a dozen of env variables.
