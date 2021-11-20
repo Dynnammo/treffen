@@ -6,3 +6,4 @@ __pycache__/
 uploads/
 coverage.xml
 media/
+.cache_ggshield

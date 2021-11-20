@@ -37,10 +37,12 @@ docker-compose up (-d)
 docker exec -it treffen_app python manage.py migrate       
 ```
 
-
 ### Production setup
 On clevercloud, you'll have to link your GitHub account or installing the Clever cloud CLI.
 Treffen works with a Postgres addon + a dozen of env variables.
+
+## Contributing
+See [CONTRIBUTING.md](https://github.com/Dynnammo/treffen/blob/master/CONTRIBUTING.md) file
 
 ## How to create your own game ?
 - On a running instance, go the admin panel: if you're instance is hosted on treffen.example.com, the URL will be treffen.example.com/admin.
