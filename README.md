@@ -29,6 +29,14 @@ Prerequesites : Postgresql, Python 3.9 at least, Pip. Done on Manjaro/ArchLinux,
 - You're done. Give yourself a *Kartoffelnsalat* to celebrate.
 
 ### Production setup
+#### First and foremost...
+⚠️ For *every deployment method*, you'll need first: ⚠️
+- a Postgres database available (mandatory for the next step)
+- a `.env` file completed with the appropriate values (follow `.env.example` model 😉):
+    - set `DJANGO_ENV` to `production`
+    - set `SECRET_KEY` to a long and unguessable string
+    - set `POSTGRES_ADDON_*` variables  set following your production-ready Postgres database
+
 #### Running with CleverCloud 🇫🇷
 On clevercloud, you'll have to link your GitHub account or installing the Clever cloud CLI.
 Treffen works with a Postgres addon + a dozen of env variables provided in the [.env.example file](https://github.com/Dynnammo/treffen/blob/master/.env.example)
@@ -53,7 +61,14 @@ docker exec -it treffen_app python manage.py migrate
 ```
 
 #### Running on Ubuntu server
-Work in progress
+- Connect to your instance in SSH
+- Setup your `~/.env` file following `.env.example` guidelines (cf. [here](#first-and-foremost...))
+- Run `./install.sh`
+- You're done : go to the URL provided by host provider (e.g : `http://example.com:8000`).
+
+#### Finally and aftermost...
+- Do not forget to setup SSL certificates
+- Setup your DNS
 
 ## Contributing
 See [CONTRIBUTING.md](https://github.com/Dynnammo/treffen/blob/master/CONTRIBUTING.md) file
