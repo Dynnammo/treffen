@@ -62,7 +62,7 @@ docker exec -it treffen_app python manage.py migrate
 
 #### Running on Ubuntu server
 - Connect to your instance in SSH
-- Setup your `~/.env` file following `.env.example` guidelines (cf. [here](#### First and foremost...))
+- Setup your `~/.env` file following `.env.example` guidelines (cf. [here](#first-and-foremost...))
 - Run `./install.sh`
 - You're done : go to the URL provided by host provider (e.g : `http://example.com:8000`).
 
