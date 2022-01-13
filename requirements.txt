@@ -18,7 +18,7 @@ incremental==21.3.0
 iniconfig==1.1.1
 mccabe==0.6.1
 packaging==20.9
-Pillow==8.3.2
+Pillow==9.0.0
 pluggy==0.13.1
 pre-commit~=2.15.0
 psycopg2==2.8.6
